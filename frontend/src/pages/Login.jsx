@@ -10,6 +10,8 @@ const Login = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const endpoint = isLogin ? 'login' : 'register';
