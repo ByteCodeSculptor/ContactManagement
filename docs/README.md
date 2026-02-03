@@ -106,12 +106,7 @@ Deployment automation (CI/CD)
 🙌 Acknowledgements
 Built as a full-stack learning project using the PERN stack.
 
-If you want, I can also generate:
 
-✅ `vercel.json` for routing  
-✅ Deployment README section  
-✅ Badges (build, license, tech stack icons)  
-✅ A more “resume-impressive” README with screenshots section
 
 
 
