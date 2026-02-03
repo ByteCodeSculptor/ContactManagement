@@ -7,19 +7,21 @@ const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext); //
   const navigate = useNavigate();
 
+  // Use Vite environment variable
   const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const endpoint = isLogin ? 'login' : 'register';
     try {
-      const res = await axios.post(`http://localhost:5000/api/auth/${endpoint}`, { email, password });
+      // Connect to dynamic backend URL
+      const res = await axios.post(`${API_URL}/api/auth/${endpoint}`, { email, password });
       
       if (isLogin) {
-        // Save token and navigate to dashboard
+        // Save token and navigate
         login(res.data.token, res.data.user);
         navigate('/dashboard');
       } else {
@@ -27,31 +29,32 @@ const Login = () => {
         setIsLogin(true);
       }
     } catch (err) {
-      alert(err.response?.data?.error || 'Authentication failed');
+      const errorMsg = err.response?.data?.message || err.response?.data?.error || 'Authentication failed';
+      alert(errorMsg);
     }
   };
 
   return (
     <div className="auth-page">
-        <div className="content-card">
-            <div className="login-wrapper">
-                <div className="login-card">
-                <h2>Welcome to ContactManager</h2>
-                <form onSubmit={handleSubmit}>
-                    <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                    <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                    <button type="submit" className="btn-red" style={{width: '100%'}}>
-                    {isLogin ? 'Log In / Sign In' : 'Register'}
-                    </button>
-                </form>
-            <p onClick={() => setIsLogin(!isLogin)} style={{marginTop: '20px', cursor: 'pointer', color: 'var(--primary-red)'}}>
-                {isLogin ? 'Switch to Register' : 'Switch to Login'}
-            </p>
-                </div>
-            </div>
-        </div>
+      <div className="content-card">
+        <h2>Welcome to ContactManager</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          </div>
+          <button type="submit" className="btn-red" style={{ width: '100%' }}>
+            {isLogin ? 'Log In' : 'Sign Up'}
+          </button>
+        </form>
+        <p className="toggle-text" onClick={() => setIsLogin(!isLogin)} style={{ marginTop: '20px', cursor: 'pointer' }}>
+          {isLogin ? 'Need an account? Register' : 'Already have an account? Login'}
+        </p>
+      </div>
     </div>
-);
+  );
 };
 
 export default Login;
