@@ -36,25 +36,25 @@ const Login = () => {
 
   return (
     <div className="auth-page">
-      <div className="content-card">
-        <h2>Welcome to ContactManagement</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-          </div>
-          <div className="form-group">
-            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-          </div>
-          <button type="submit" className="btn-red" style={{ width: '100%' }}>
-            {isLogin ? 'Log In' : 'Sign Up'}
-          </button>
-        </form>
-        <p className="toggle-text" onClick={() => setIsLogin(!isLogin)} style={{ marginTop: '20px', cursor: 'pointer' }}>
-          {isLogin ? 'Need an account? Register' : 'Already have an account? Login'}
-        </p>
-      </div>
+        <div className="content-card">
+            <div className="login-wrapper">
+                <div className="login-card">
+                <h2>Welcome to ContactManager</h2>
+                <form onSubmit={handleSubmit}>
+                    <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                    <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                    <button type="submit" className="btn-red" style={{width: '100%'}}>
+                    {isLogin ? 'Log In / Sign In' : 'Register'}
+                    </button>
+                </form>
+            <p onClick={() => setIsLogin(!isLogin)} style={{marginTop: '20px', cursor: 'pointer', color: 'var(--primary-red)'}}>
+                {isLogin ? 'Switch to Register' : 'Switch to Login'}
+            </p>
+                </div>
+            </div>
+        </div>
     </div>
-  );
+);
 };
 
 export default Login;
