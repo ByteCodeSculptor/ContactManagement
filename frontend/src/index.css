@@ -116,3 +116,174 @@ body {
   padding: 10px 20px;
   border-radius: 30px;
 }
+
+/* made reset updates from here */
+/* Updated Search Bar Styling */
+.search-bar {
+  width: 100%;
+  max-width: 400px; /* Limits width on larger screens */
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 30px; /* Creates the pill shape */
+  background-color: #f1f3f4; /* Light gray background */
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.search-bar:focus {
+  background-color: #ffffff;
+  border-color: var(--primary-red);
+  box-shadow: 0 2px 8px rgba(211, 47, 47, 0.15); /* Soft red glow on focus */
+}
+
+.search-bar::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+/* Ensure the container keeps it aligned */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-grow: 1; /* Allows search bar to take up available space */
+  justify-content: flex-end;
+}
+
+/* Better Logout Button UI */
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  color: #555;
+  border: 1px solid #e0e0e0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.logout-btn:hover {
+  background-color: #fff1f1; /* Very light red tint */
+  color: var(--primary-red);
+  border-color: var(--primary-red);
+  box-shadow: 0 2px 5px rgba(211, 47, 47, 0.1);
+}
+
+.logout-btn:active {
+  transform: scale(0.96); /* Subtle "press" effect */
+}
+
+/* made changes for contac details .jsx file */
+/* --- Scoped Contact Details Styling --- */
+
+/* Centered layout only for the Details page */
+.details-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: var(--bg-color); /* Uses the global background color variable */
+}
+
+/* The card container */
+.details-page .content-card {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Back button specific styling */
+.details-page .btn-back-nav {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+.details-page .btn-back-nav:hover {
+  background-color: #000;
+}
+
+/* Form Group Spacing */
+.details-page .form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.details-page .form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* Input and Textarea Polish */
+.details-page .form-group input, 
+.details-page .form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--gray-border);
+  border-radius: 10px;
+  background-color: #fafafa;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.details-page .form-group input:focus {
+  outline: none;
+  border-color: var(--primary-red);
+}
+
+/* Action Button Layout */
+.details-page .details-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+/* back to dashboard button */
+/* Back to Dashboard Button */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #333; /* Dark contrast */
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
+.btn-back:hover {
+  background-color: #000000;
+  transform: translateX(-3px); /* Subtle nudge effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-back span {
+  font-size: 1.1rem;
+}
