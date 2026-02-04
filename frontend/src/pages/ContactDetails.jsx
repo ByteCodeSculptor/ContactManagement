@@ -51,7 +51,7 @@ const handleSubmit = async (e) => {
   return (
     <div className="details-page">
       <div style={{ width: '100%', maxWidth: '500px' }}>
-        <button className="btn-cancel" style={{ marginBottom: '20px', backgroundColor: 'black', color: 'white' }} onClick={onCancel}>
+        <button className="btn-back" style={{ marginBottom: '20px', backgroundColor: 'black', color: 'white' }} onClick={onCancel}>
           ← Back to Dashboard
         </button>
         <div className="content-card">
