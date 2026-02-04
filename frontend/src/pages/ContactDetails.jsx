@@ -37,6 +37,16 @@ const handleSubmit = async (e) => {
     console.error("Save error", err); 
   }
 };
+  const handleDelete = async () => {
+    if (window.confirm("Delete this contact?")) {
+      try {
+        await axios.delete(`${API_URL}/api/contacts/${existingContact.id}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        onSave();
+      } catch (err) { console.error("Delete error", err); }
+    }
+  };
 
   return (
     <div className="details-page">
