@@ -49,27 +49,25 @@ CREATE TABLE contacts (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+```
 
-2. Backend Configuration
-Navigate to the backend directory:
-cd backend
-Install dependencies:
-npm install
-Create a .env file in the backend/ root:
+### 2. Backend Configuration
+
+- **Navigate to the backend directory**: cd backend
+- **Install dependencies**: npm install
+- **Create a .env file in the backend/ root**:
 DATABASE_URL=postgres://username:password@localhost:5432/your_db_name
 JWT_SECRET=your_super_secret_key
 PORT=5000
-Start the server:
-node src/server.js
+- **Start the server**:node src/server.js
 
-3. Frontend Configuration
-Open a new terminal and navigate to the frontend directory:
-cd frontend
-Install dependencies:
-npm install
-Create a .env file in the frontend/ root:
+### 3. Frontend Configuration
+- **Open a new terminal and navigate to the frontend directory**: cd frontend
+- **Install dependencies**: npm install
+- **Create a .env file in the frontend/ root**:
 VITE_API_BASE_URL=http://localhost:5000
-Start the development server:
+- **Start the development server**:
+  
 npm run dev
 📂 Project Structure
 ├── backend
@@ -105,6 +103,7 @@ Deployment automation (CI/CD)
 
 🙌 Acknowledgements
 Built as a full-stack learning project using the PERN stack.
+
 
 
 
