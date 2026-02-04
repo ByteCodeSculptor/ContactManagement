@@ -22,34 +22,52 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// POST a new contact (Moved from server.js)
+// POST - Create Contact
 router.post('/', auth, async (req, res) => {
-    const { name, phone, email, company, notes, tags } = req.body;
-    try {
-        const result = await pool.query(
-            'INSERT INTO contacts (user_id, name, phone, email, company, notes, tags) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-            [req.user.id, name, phone, email, company, notes, tags]
-        );
-        res.status(201).json(result.rows[0]);
-    } catch (err) {
-        res.status(400).json({ error: "Invalid data" });
-    }
+  const { name, phone, email, company, tags, notes } = req.body;
+
+  // Phone Validation: 10 digits, starts with 1, 6, 7, 8, 9, or 0
+  const phoneRegex = /^[167890]\d{9}$/;
+  if (phone && !phoneRegex.test(phone)) {
+    return res.status(400).json({ 
+      error: "Invalid Phone Number", 
+      message: "Phone number must be 10 digits and start with 1, 6, 7, 8, 9, or 0." 
+    });
+  }
+
+  try {
+    const newContact = await pool.query(
+      'INSERT INTO contacts (user_id, name, phone, email, company, tags, notes) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+      [req.user.id, name, phone, email, company, tags, notes]
+    );
+    res.json(newContact.rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
-// UPDATE contact 
+// PUT - Update Contact
 router.put('/:id', auth, async (req, res) => {
-  const { name, phone, email, company, notes, tags, is_favorite } = req.body;
+  const { id } = req.params;
+  const { name, phone, email, company, tags, notes, is_favorite } = req.body;
+
+  // Phone Validation
+  const phoneRegex = /^[167890]\d{9}$/;
+  if (phone && !phoneRegex.test(phone)) {
+    return res.status(400).json({ 
+      error: "Invalid Phone Number", 
+      message: "Phone number must be 10 digits and start with 1, 6, 7, 8, 9, or 0." 
+    });
+  }
+
   try {
-    const updated = await pool.query(
-      `UPDATE contacts SET name=$1, phone=$2, email=$3, company=$4, notes=$5, tags=$6, is_favorite=$7 
-       WHERE id=$8 AND user_id=$9 RETURNING *`,
-      [name, phone, email, company, notes, tags, is_favorite, req.params.id, req.user.id]
+    const updatedContact = await pool.query(
+      'UPDATE contacts SET name=$1, phone=$2, email=$3, company=$4, tags=$5, notes=$6, is_favorite=$7 WHERE id=$8 AND user_id=$9 RETURNING *',
+      [name, phone, email, company, tags, notes, is_favorite, id, req.user.id]
     );
-    
-    if (updated.rows.length === 0) return res.status(404).json({ error: "Contact not found" });
-    res.json(updated.rows[0]);
+    res.json(updatedContact.rows[0]);
   } catch (err) {
-    res.status(400).json({ error: "Data validation failed" });
+    res.status(500).json({ error: "Server error" });
   }
 });
 
