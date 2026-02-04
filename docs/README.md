@@ -66,9 +66,9 @@ PORT=5000
 - **Install dependencies**: npm install
 - **Create a .env file in the frontend/ root**:
 VITE_API_BASE_URL=http://localhost:5000
-- **Start the development server**:
-  
-npm run dev
+- **Start the development server**: npm run dev
+
+```text
 📂 Project Structure
 ├── backend
 │   ├── src
@@ -86,6 +86,7 @@ npm run dev
 │   │   └── index.css        # Global scoped styling
 │   └── .env                 # Frontend environment variables
 
+```
 ---
 
 ## 🛡️ Validation Rules
@@ -103,6 +104,7 @@ Deployment automation (CI/CD)
 
 ## 🙌 Acknowledgements
 Built as a full-stack learning project using the PERN stack.
+
 
 
 
