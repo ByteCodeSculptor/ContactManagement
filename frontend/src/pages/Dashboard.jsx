@@ -48,7 +48,7 @@ const Dashboard = () => {
   <div className="page-wrapper">
     <div className="dashboard-page">
     <nav className="navbar">
-      <h2 className="logo">📁 ContactManager</h2>
+      <h2 className="logo">📁 ContactManagement</h2>
       <div className="nav-right" style={{display: 'flex', gap: '15px'}}>
         <input className="search-bar" type="text" placeholder="Search contacts..." onChange={(e) => setSearch(e.target.value)} />
         <button onClick={logout} className="logout-btn">Logout</button>
