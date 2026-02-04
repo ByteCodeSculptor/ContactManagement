@@ -37,7 +37,7 @@ const Login = () => {
   return (
     <div className="auth-page">
       <div className="content-card">
-        <h2>Welcome to ContactManager</h2>
+        <h2>Welcome to ContactManagement</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
