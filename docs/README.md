@@ -86,23 +86,24 @@ npm run dev
 │   │   └── index.css        # Global scoped styling
 │   └── .env                 # Frontend environment variables
 
+---
 
-
-🛡️ Validation Rules
+## 🛡️ Validation Rules
 To ensure high security and data integrity, the following rules are enforced during registration:
 Authorized Emails: Must end with @gmail.com, @outlook.com, or @yahoo.com.
 Password Strength: Minimum 8 characters, must include at least one number and one special character.
 
 
-📌 Future Improvements
+## 📌 Future Improvements
 Contact profile pictures
 Tag-based filtering system
 Pagination for large contact lists
 Dark mode support
 Deployment automation (CI/CD)
 
-🙌 Acknowledgements
+## 🙌 Acknowledgements
 Built as a full-stack learning project using the PERN stack.
+
 
 
 
