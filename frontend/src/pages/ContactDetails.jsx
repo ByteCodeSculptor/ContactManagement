@@ -8,32 +8,35 @@ const ContactForm = ({ token, onSave, onCancel, existingContact = null }) => {
 
   const API_URL = import.meta.env.VITE_API_BASE_URL;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const url = existingContact 
-      ? `${API_URL}/api/contacts/${existingContact.id}` 
-      : `${API_URL}/api/contacts`;
-    
-    const method = existingContact ? 'put' : 'post';
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      await axios[method](url, formData, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      onSave();
-    } catch (err) { console.error("Save error", err); }
-  };
+  // Client-side validation
+  const phoneRegex = /^[167890]\d{9}$/;
+  if (formData.phone && !phoneRegex.test(formData.phone)) {
+    alert("Phone number must be exactly 10 digits and start with 1, 6, 7, 8, 9, or 0.");
+    return;
+  }
 
-  const handleDelete = async () => {
-    if (window.confirm("Delete this contact?")) {
-      try {
-        await axios.delete(`${API_URL}/api/contacts/${existingContact.id}`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        onSave();
-      } catch (err) { console.error("Delete error", err); }
-    }
-  };
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
+  const url = existingContact 
+    ? `${API_URL}/api/contacts/${existingContact.id}` 
+    : `${API_URL}/api/contacts`;
+  
+  const method = existingContact ? 'put' : 'post';
+
+  try {
+    await axios[method](url, formData, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    onSave();
+  } catch (err) { 
+    // Capture and show the specific validation error from backend if available
+    const errorMsg = err.response?.data?.message || err.response?.data?.error || "Save error";
+    alert(errorMsg);
+    console.error("Save error", err); 
+  }
+};
 
   return (
     <div className="details-page">
